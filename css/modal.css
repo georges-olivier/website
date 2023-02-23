@@ -1,0 +1,23 @@
+#overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: #00000099;
+	z-index: 999999;
+	display: none;
+	justify-content: center;
+}
+
+#overlay div.modal {
+	background-color: #fff;
+	width: 50vw;
+	height: 90vh;
+	align-self: center;
+}
+
+.no-scroll {
+  height: 100%;
+  overflow: hidden;
+}

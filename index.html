@@ -7,131 +7,9 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;400;700&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Italiana&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
-
-	<style type="text/css">
-	body {
-		background-color: #fff;
-		padding: 0;
-		margin: 0;
-		font-family: 'Raleway', sans-serif;
-	}
-	div {
-		box-sizing: border-box;
-	}
-	h1, h2 {
-		padding: 0;
-		margin: 0;
-		font-family: 'Cormorant Garamond', serif;
-	}
-	.head {
-		position: fixed;
-		top: 0;
-		left: 0;
-		background-color: #00000033;
-		padding: 16pt 32pt;
-		display: inline-block;
-		width: 100%;
-		z-index: 10000;
-	}
-	.head h1 {
-		font-size: 24pt;
-		font-weight: 400;
-		color: #fff;
-	}
-	.row {
-		padding: 40px 40px 80px;
-	}
-	.row div.title {
-		max-width: 1200px;
-		margin: auto;
-		text-align: center;
-		padding-bottom: 20pt;
-		margin-bottom: 40pt;
-		border-bottom: 1px dashed #ddd;
-	}
-	.row div.title img.icon {
-		height: 100pt;
-		filter: drop-shadow(0px 4px 4px rgb(0 0 0 / 0.4));
-		margin-bottom: 8pt;
-	}
-	.row div.title span {
-		color: #333;
-		font-weight: 700;
-		background-color: #fff;
-		font-size: 10pt;
-		line-height: 10pt;
-		padding: 4pt 8pt;
-		border-radius: 14pt;
-	}
-	.row h2 {
-		font-weight: 300;
-		font-size: 60pt;
-		color: #333;
-		text-align: right;
-	}
-	.grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
-		grid-template-rows: auto;
-		grid-gap: 30px;
-		max-width: 1200px;
-		margin: auto;
-	}
-	.grid div.colspan2 {
-		grid-column-start: auto;
-		grid-column-end: span 2;
-	}
-	.grid div.colspan3 {
-		grid-column-start: auto;
-		grid-column-end: span 3;
-	}
-	.grid div.colspan4 {
-		grid-column-start: auto;
-		grid-column-end: span 4;
-	}
-	.grid div.colspan6 {
-		grid-column-start: auto;
-		grid-column-end: span 6;
-	}
-	#images div {
-		display: flex;
-		align-items: center;
-		width: 100%;
-		height: 100%;
-	}
-	#images div.block div {
-		font-size: 20pt;
-		line-height: 24pt;
-		justify-content: center;
-		background-color: #ffffff30;
-		padding: 0pt 30pt;
-	}
-	#images div img.show {
-		width: 100%;
-		height: 100%;
-		opacity: 1;
-	}
-	.center-cropped {
-		box-shadow: 0 4px 10px 0px #00000060;
-		object-fit: cover;
-		object-position: center;
-		height: 95%;
-		width: 95%;
-		margin: auto;
-		opacity: 0;
-		transition: all 0.5s ease;
-	}
-
-	.mesh {
-		padding-top: 150px;
-        background-color: rgb(2, 132, 199);
-        background-image: radial-gradient(at 90% 83%, rgb(228, 228, 231) 0, transparent 83%), radial-gradient(at 12% 11%, rgb(30, 64, 175) 0, transparent 48%), radial-gradient(at 35% 91%, rgb(253, 186, 116) 0, transparent 47%);
-
-	}
-
-	</style>
+	<link href="css/site.css" rel="stylesheet">
+	<link href="css/modal.css" rel="stylesheet">
 </head>
 <body>
 
@@ -246,8 +124,13 @@ $(function() {
 		});
 	});
 
+	$('#images').on('click', 'img', function(e) {
+		openModal();
+	});
+
 });
 </script>
+<script src="js/modal.js"></script>
 
 <!--
 	https://thenounproject.com/icon/new-york-36684/
