@@ -11,9 +11,8 @@
 }
 
 #overlay div.modal {
+	display: flex;
 	background-color: #fff;
-	width: 50vw;
-	height: 90vh;
 	align-self: center;
 }
 

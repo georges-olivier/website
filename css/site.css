@@ -4,7 +4,7 @@ body {
 	margin: 0;
 	font-family: 'Raleway', sans-serif;
 }
-div {
+div, img {
 	box-sizing: border-box;
 }
 h1, h2 {
@@ -94,6 +94,9 @@ h1, h2 {
 	justify-content: center;
 	background-color: #ffffff30;
 	padding: 0pt 30pt;
+}
+#images div img {
+	cursor: pointer;
 }
 #images div img.show {
 	width: 100%;
