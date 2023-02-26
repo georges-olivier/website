@@ -82,26 +82,44 @@ h1, h2 {
 	grid-column-start: auto;
 	grid-column-end: span 6;
 }
-#images div {
+#images div.image,
+#images div.block {
+	position: relative;
 	display: flex;
 	align-items: center;
 	width: 100%;
 	height: 100%;
 }
-#images div.block div {
-	font-size: 20pt;
-	line-height: 24pt;
+#images div.block {
+	font-size: 16pt;
+	line-height: 22pt;
 	justify-content: center;
 	background-color: #ffffff30;
 	padding: 0pt 30pt;
 }
-#images div img {
+#images div.image img {
 	cursor: pointer;
 }
-#images div img.show {
+#images div.image img.show {
 	width: 100%;
 	height: 100%;
 	opacity: 1;
+}
+#images div.image div.footer {
+	position: absolute;
+	bottom: -8px;
+	left: 0px;
+	width: 100%;
+	text-align: center;
+}
+#images div.image div.footer div.caption {
+	display: inline-block;
+	padding: 5px 8px;
+	background-color: #fff;
+	color: #222;
+	font-size: 8pt;
+	font-weight: 600;
+	border-radius: 16pt;
 }
 .center-cropped {
 	box-shadow: 0 4px 10px 0px #00000060;

@@ -18,11 +18,12 @@ function openModal(img) {
 	let overlay = $('#overlay');
 	overlay.css({display: 'flex', top: $(window).scrollTop()});
 
+	$('#images img[current=true]').removeAttr('current');
 	img.attr('current', true);
 
 	// Append modal
 	modal = $('<div>', {class: 'modal'});
-	modal.append($('<img>', {class: 'preview', src: img.attr('src'), imgId: img.attr('imgId')}).css({width: modalWidth + 'px', height: modalHeight + 'px', padding: '3rem'}));
+	modal.append($('<img>', {class: 'preview', src: img.attr('src'), imgSeq: img.attr('imgSeq')}).css({width: modalWidth + 'px', height: modalHeight + 'px', padding: '3rem'}));
 	overlay.append(modal);
 }
 

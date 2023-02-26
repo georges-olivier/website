@@ -19,7 +19,6 @@
 
 <div class="row mesh">
 	<div class="title">
-		<img src="img/london-white.svg" class="icon"><br>
 		<span>LONDON</span>
 	</div>
 	<div id="images" class="grid"></div>
@@ -32,69 +31,70 @@
 
 let images = [
 	{
-		name: 'London 1',
+		title: 'River tracks',
+		theme: 'London',
 		file: 'London-1.webp',
 		class: 'colspan3'
 	},
 	{
-		name: 'London 2',
+		title: 'On the Riviera',
 		file: 'London-2.webp',
 		class: 'colspan3'
 	},
 	{
-		name: 'Lloyds 4',
+		title: 'Lloyds 4',
 		file: 'Lloyds-4.webp',
 		class: 'colspan3'
 	},
 	{
-		name: 'Lloyds 1',
+		title: 'Midnight oil burning',
 		file: 'Lloyds-1.webp',
 		class: 'colspan3'
 	},
 	{
-		name: 'Lloyds 5',
+		title: 'Lloyds 5',
 		block: "The City has more Japanese banks than Tokyo and more American banks than Manhattan.",
 		class: 'colspan4'
 	},
 	{
-		name: 'London 4',
+		title: 'London 4',
 		file: 'London-4.webp',
 		class: 'colspan4'
 	},
 	{
-		name: 'Lloyds 7',
+		title: 'Lloyds 7',
 		file: 'Lloyds-7.webp',
 		class: 'colspan4'
 	},
 
 	{
-		name: 'London 10',
+		title: 'London 10',
 		file: 'London-10.webp',
 		class: 'colspan4'
 	},
 	{
-		name: 'London 12',
+		title: 'London 12',
 		file: 'London-12.webp',
 		class: 'colspan4'
 	},
 	{
-		name: 'London 11',
+		title: 'London 11',
 		file: 'London-11.webp',
 		class: 'colspan4'
 	},
 
 	{
-		name: 'London 13',
+		title: 'London 13',
 		file: 'London-13.webp',
 		class: 'colspan4'
 	},
 	{
-		name: 'Lloyds 4',
+		title: 'Lloyds 4',
 		file: 'Lloyds-4.webp',
 		class: 'colspan3'
 	},
 	{
-		name: 'London 15',
+		title: 'London 15',
 		file: 'London-15.webp',
 		class: 'colspan3'
 	},
@@ -103,7 +103,7 @@ let images = [
 
 $(function() {
 
-	let imgId = 1;
+	let imgSeq = 1;
 
 	$.each(images, function(i, image) {
 		let div = $('<div>');
@@ -111,9 +111,9 @@ $(function() {
 			div.addClass(image.class);
 		}
 		if (image.file) {
-			let img = $('<img>', {src: 'img/'+image.file, class: 'thumbnail center-cropped', imgId: imgId});
-			$('#images').append(div.append(img));
-			imgId++;
+			let img = $('<img>', {src: 'img/'+image.file, class: 'center-cropped', imgSeq: imgSeq, imgTitle: image.title});
+			$('#images').append(div.addClass('image').append(img));
+			imgSeq++;
 		}
 		if (image.block) {
 			let block = $('<div>').text(image.block);
@@ -131,21 +131,33 @@ $(function() {
 		openModal($(this));
 	});
 
+	$('#images div.image').on('mouseenter mouseleave', function(e) {
+		if (e.type == 'mouseenter') {
+			let footer = $('<div>', {class: 'footer'});
+			let caption = $('<div>', {class: 'caption'}).text($(this).find('img').attr('imgTitle'));
+			footer.append(caption);
+			$(this).append(footer);
+		}
+		if (e.type == 'mouseleave') {
+			$(this).find('div.footer').remove();
+		}
+	});
+
 	$(document).keydown(function (e) {
 		if (modal) {
 			let img = modal.find('img.preview');
-			let imgId = parseInt(img.attr('imgId'));
+			let imgSeq = parseInt(img.attr('imgSeq'));
 			let images = $('#images img').length;
 			let setImgId = false;
 
 			if ([39,40].includes(e.which)) {
-				setImgId = imgId+1;
+				setImgId = imgSeq+1;
 				if (setImgId > images) {
 					setImgId = 1;
 				}
 			}
 			if ([37,38].includes(e.which)) {
-				setImgId = imgId-1;
+				setImgId = imgSeq-1;
 				if (setImgId < 1) {
 					setImgId = images;
 				}
@@ -156,7 +168,7 @@ $(function() {
 			}
 
 			if (setImgId) {
-				let newimg = $('#images img[imgId='+setImgId+']');
+				let newimg = $('#images img[imgSeq='+setImgId+']');
 
 				if (newimg.length) {
 					modal.remove();
@@ -184,6 +196,10 @@ $(function() {
 <!--
 	https://thenounproject.com/icon/new-york-36684/
 	https://hypercolor.dev/mesh
+
+	https://www.fontspace.com/darlington-font-f65957
+	https://www.fontspace.com/better-grade-font-f56362
+	https://www.fontspace.com/american-signature-font-f89299
 //-->
 
 </body>
