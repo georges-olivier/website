@@ -1,5 +1,5 @@
 body {
-	background-color: #fff;
+	background-color: #1c4eb3;
 	padding: 0;
 	margin: 0;
 	font-family: 'Raleway', sans-serif;
@@ -107,10 +107,20 @@ h1, h2 {
 }
 #images div.image div.footer {
 	position: absolute;
-	bottom: -8px;
 	left: 0px;
 	width: 100%;
-	text-align: center;
+	bottom: -8px;
+	text-align: center
+}
+#images div.image i.favorite {
+	position: absolute;
+	right: 8px;
+	top: 8px;
+	background-color: #ffffff50;
+	padding: 5px;
+	border-radius: 50%;
+	color: #fff;
+	cursor: pointer;
 }
 #images div.image div.footer div.caption {
 	display: inline-block;
@@ -118,7 +128,7 @@ h1, h2 {
 	background-color: #fff;
 	color: #222;
 	font-size: 8pt;
-	font-weight: 600;
+	font-weight: 400;
 	border-radius: 16pt;
 }
 .center-cropped {

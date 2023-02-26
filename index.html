@@ -8,6 +8,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;400;700&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" rel="stylesheet">
 	<link href="css/site.css" rel="stylesheet">
 	<link href="css/modal.css" rel="stylesheet">
 </head>
@@ -18,9 +19,6 @@
 </div>
 
 <div class="row mesh">
-	<div class="title">
-		<span>LONDON</span>
-	</div>
 	<div id="images" class="grid"></div>
 </div>
 
@@ -37,7 +35,7 @@ let images = [
 		class: 'colspan3'
 	},
 	{
-		title: 'On the Riviera',
+		title: 'Private Riviera',
 		file: 'London-2.webp',
 		class: 'colspan3'
 	},
@@ -47,7 +45,7 @@ let images = [
 		class: 'colspan3'
 	},
 	{
-		title: 'Midnight oil burning',
+		title: 'Midnight oil burner',
 		file: 'Lloyds-1.webp',
 		class: 'colspan3'
 	},
@@ -84,7 +82,7 @@ let images = [
 	},
 
 	{
-		title: 'London 13',
+		title: 'Clocked in',
 		file: 'London-13.webp',
 		class: 'colspan4'
 	},
@@ -127,6 +125,16 @@ $(function() {
 		});
 	});
 
+	$('#images').on('click', 'i.favorite', function(e) {
+		e.preventDefault();
+		if ($(this).hasClass('fa-regular')) {
+			$(this).remove('fa-regular').addClass('fa-solid').css('color', '#183c8f');
+		} else {
+			$(this).remove('fa-solid').addClass('fa-regular').css('color', '#fff');
+		}
+
+	});
+
 	$('#images').on('click', 'img', function(e) {
 		openModal($(this));
 	});
@@ -135,10 +143,12 @@ $(function() {
 		if (e.type == 'mouseenter') {
 			let footer = $('<div>', {class: 'footer'});
 			let caption = $('<div>', {class: 'caption'}).text($(this).find('img').attr('imgTitle'));
+			let favorite = $('<i>', {class: 'favorite fa-regular fa-heart'});
 			footer.append(caption);
-			$(this).append(footer);
+			$(this).append(favorite,footer);
 		}
 		if (e.type == 'mouseleave') {
+			$(this).find('i.favorite').remove();
 			$(this).find('div.footer').remove();
 		}
 	});
