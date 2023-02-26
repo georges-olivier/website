@@ -103,14 +103,17 @@ let images = [
 
 $(function() {
 
+	let imgId = 1;
+
 	$.each(images, function(i, image) {
 		let div = $('<div>');
 		if (image.class) {
 			div.addClass(image.class);
 		}
 		if (image.file) {
-			let img = $('<img>', {src: 'img/'+image.file, class: 'center-cropped'});
+			let img = $('<img>', {src: 'img/'+image.file, class: 'thumbnail center-cropped', imgId: imgId});
 			$('#images').append(div.append(img));
+			imgId++;
 		}
 		if (image.block) {
 			let block = $('<div>').text(image.block);
@@ -126,6 +129,52 @@ $(function() {
 
 	$('#images').on('click', 'img', function(e) {
 		openModal($(this));
+	});
+
+	$(document).keydown(function (e) {
+		if (modal) {
+			let img = modal.find('img.preview');
+			let imgId = parseInt(img.attr('imgId'));
+			let images = $('#images img').length;
+			let setImgId = false;
+
+			if ([39,40].includes(e.which)) {
+				setImgId = imgId+1;
+				if (setImgId > images) {
+					setImgId = 1;
+				}
+			}
+			if ([37,38].includes(e.which)) {
+				setImgId = imgId-1;
+				if (setImgId < 1) {
+					setImgId = images;
+				}
+			}
+			if ([27,32].includes(e.which)) {
+				e.preventDefault();
+				closeModal();
+			}
+
+			if (setImgId) {
+				let newimg = $('#images img[imgId='+setImgId+']');
+
+				if (newimg.length) {
+					modal.remove();
+					openModal(newimg);
+				}
+			}
+
+		} else {
+			if (e.which == 32) {
+				e.preventDefault();
+				if ($('#images img[current=true]').length) {
+					openModal($('#images img[current=true]'));
+				} else {
+					openModal($('#images img:first-child'));
+				}
+
+			}
+		}
 	});
 
 });

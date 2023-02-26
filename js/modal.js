@@ -1,4 +1,4 @@
-let modal;
+let modal = false;
 
 function openModal(img) {
 
@@ -7,9 +7,8 @@ function openModal(img) {
 	let ratio = 4/3;
 	let max = window.innerHeight * 0.95;
 
-	let modalWidth = (imgWidth > imgHeight) ? max:max / ratio;
-	let modalHeight = (imgWidth < imgHeight) ? max:max / ratio;
-	let padding = (modalWidth == max) ? '':'';
+	let modalWidth = (imgWidth > imgHeight) ? max * 1.1:max / ratio;
+	let modalHeight = (imgWidth < imgHeight) ? max:max / ratio * 1.1;
 
 	// Prevent scrolling
 	$('body').addClass('no-scroll');
@@ -19,11 +18,12 @@ function openModal(img) {
 	let overlay = $('#overlay');
 	overlay.css({display: 'flex', top: $(window).scrollTop()});
 
+	img.attr('current', true);
+
 	// Append modal
 	modal = $('<div>', {class: 'modal'});
-	modal.append($('<img>', {src: img.attr('src')}).css({width: modalWidth + 'px', height: modalHeight + 'px', padding: '3rem'}));
+	modal.append($('<img>', {class: 'preview', src: img.attr('src'), imgId: img.attr('imgId')}).css({width: modalWidth + 'px', height: modalHeight + 'px', padding: '3rem'}));
 	overlay.append(modal);
-
 }
 
 function closeModal() {
@@ -33,6 +33,7 @@ function closeModal() {
 	$('body').unbind('touchmove')
 	if (modal.length) {
 		modal.remove();
+		modal = false;
 	}
 }
 
