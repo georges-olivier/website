@@ -33,7 +33,7 @@ a {
 .head a.social {
 	display: inline-flex;
 	color: #fff;
-	background-color: #224b66;
+	background-color: #00000060;
 	width: 2.4rem;
 	height: 2.4rem;
 	border-radius: 2.4rem;
@@ -42,7 +42,7 @@ a {
 	margin-left: 0.25rem;
 }
 .head a.social:hover {
-	background-color: #28619c;
+	background-color: #00000090;
 
 }
 .head a.social i {

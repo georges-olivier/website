@@ -4,8 +4,8 @@
 	<meta charset="utf-8">
 	<title>Georges Olivier</title>
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 	<link rel="manifest" href="/site.webmanifest">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,9 +23,9 @@
 		<h1>Georges Olivier</h1>
 	</div>
 	<div class="float-right">
-		<a href="https://twitter.com/ArtistOlivier" class="social" title="Twitter @ArtistOlivier"><i class="fa-brands fa-twitter"></i></a>
-		<a href="https://www.instagram.com/ArtistGeorgesOlivier" class="social" title="Instagram @artistgeorgesolivier"><i class="fa-brands fa-instagram"></i></a>
-		<a href="https://www.pinterest.fr/artistolivier/georges-olivier/" class="social" title="Pinterest @artistolivier"><i class="fa-brands fa-pinterest"></i></a>
+		<a href="https://twitter.com/ArtistOlivier" class="social" title="Twitter @ArtistOlivier" target="_social"><i class="fa-brands fa-twitter"></i></a>
+		<a href="https://www.instagram.com/ArtistGeorgesOlivier" class="social" title="Instagram @artistgeorgesolivier" target="_social"><i class="fa-brands fa-instagram"></i></a>
+		<a href="https://www.pinterest.fr/artistolivier/georges-olivier/" class="social" title="Pinterest @artistolivier" target="_social"><i class="fa-brands fa-pinterest"></i></a>
 	</div>
 </div>
 
@@ -199,6 +199,14 @@ $(function() {
 
 			}
 		}
+	});
+
+	if ($(location).attr('hash')) {
+
+	}
+
+	$(window).on('hashchange', function() {
+		let path = $(location).attr('hash');
 	});
 
 });
