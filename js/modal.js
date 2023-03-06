@@ -10,7 +10,7 @@ function openModal(img) {
 	let modalWidth = (imgWidth > imgHeight) ? max * 1.1:max / ratio;
 	let modalHeight = (imgWidth < imgHeight) ? max:max / ratio * 1.1;
 
-	window.location.hash = '/' + img.attr('src');
+	window.location.hash = '/image/' + img.attr('slug');
 
 	// Prevent scrolling
 	$('body').addClass('no-scroll');

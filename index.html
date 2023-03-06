@@ -40,30 +40,31 @@
 
 let images = [
 	{
+		id: 1,
 		title: 'River tracks',
 		theme: 'London',
-		file: 'London-1.webp',
+		file: 'river-tracks',
 		class: 'colspan3'
 	},
 	{
-		title: 'Private Riviera',
-		file: 'London-2.webp',
+		title: 'London-2',
+		file: 'London-2',
 		class: 'colspan3'
 	},
 	{
 		title: 'Lloyds 4',
-		file: 'Lloyds-4.webp',
+		file: 'Lloyds-4',
 		class: 'colspan3'
 	},
 	{
 		title: 'Burning the midnight oil',
-		file: 'Lloyds-1.webp',
+		file: 'burning-the-midnight-oil',
 		class: 'colspan3'
 	},
 
 	{
 		title: 'London 4',
-		file: 'London-4.webp',
+		file: 'London-4',
 		class: 'colspan4'
 	},
 	{
@@ -73,29 +74,29 @@ let images = [
 	},
 	{
 		title: 'Lloyds 7',
-		file: 'Lloyds-7.webp',
+		file: 'Lloyds-7',
 		class: 'colspan4'
 	},
 
 	{
 		title: 'London 10',
-		file: 'London-10.webp',
+		file: 'London-10',
 		class: 'colspan4'
 	},
 	{
 		title: 'London 12',
-		file: 'London-12.webp',
+		file: 'London-12',
 		class: 'colspan4'
 	},
 	{
 		title: 'London 11',
-		file: 'London-11.webp',
+		file: 'London-11',
 		class: 'colspan4'
 	},
 
 	{
 		title: 'Clocked in',
-		file: 'London-13.webp',
+		file: 'London-13',
 		class: 'colspan4'
 	},
 
@@ -111,7 +112,7 @@ $(function() {
 			div.addClass(image.class);
 		}
 		if (image.file) {
-			let img = $('<img>', {src: 'img/'+image.file, class: 'center-cropped', imgSeq: imgSeq, imgTitle: image.title});
+			let img = $('<img>', {src: 'img/'+image.file+'.webp', class: 'center-cropped', imgSeq: imgSeq, imgTitle: image.title, slug: image.file, imageId: image.id});
 			$('#images').append(div.addClass('image').append(img));
 			imgSeq++;
 		}
@@ -129,11 +130,24 @@ $(function() {
 
 	$('#images').on('click', 'i.favorite', function(e) {
 		e.preventDefault();
+		let imageId = $(this).attr('imageId');
 		if ($(this).hasClass('fa-regular')) {
 			$(this).remove('fa-regular').addClass('fa-solid').css('color', '#183c8f');
+			let action = 'add';
 		} else {
 			$(this).remove('fa-solid').addClass('fa-regular').css('color', '#fff');
+			let action = 'remove';
 		}
+
+		$.ajax({
+			method: 'POST',
+			url: '//api.georgesolivier.art/set-favorite',
+			data: { imageId: imageId, action: action },
+			dataType: 'json'
+		})
+		.done(function( response ) {
+			console.log(response);
+		});
 
 	});
 
@@ -143,9 +157,10 @@ $(function() {
 
 	$('#images div.image').on('mouseenter mouseleave', function(e) {
 		if (e.type == 'mouseenter') {
+			let img = $(this).find('img');
 			let footer = $('<div>', {class: 'footer'});
-			let caption = $('<div>', {class: 'caption'}).text($(this).find('img').attr('imgTitle'));
-			let favorite = $('<i>', {class: 'favorite fa-regular fa-heart'});
+			let caption = $('<div>', {class: 'caption'}).text(img.attr('imgTitle'));
+			let favorite = $('<i>', {class: 'favorite fa-regular fa-heart', imageId: img.attr('imageId')});
 			footer.append(caption);
 			$(this).append(favorite,footer);
 		}
@@ -154,6 +169,7 @@ $(function() {
 			$(this).find('div.footer').remove();
 		}
 	});
+
 
 	$(document).keydown(function (e) {
 		if (modal) {
@@ -202,7 +218,7 @@ $(function() {
 	});
 
 	if ($(location).attr('hash')) {
-
+		// Open whatever
 	}
 
 	$(window).on('hashchange', function() {
