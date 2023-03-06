@@ -82,6 +82,11 @@ h1, h2 {
 	grid-column-start: auto;
 	grid-column-end: span 6;
 }
+.grid div.rowspan2 {
+	grid-row-start: auto;
+	grid-row-end: span 2;
+}
+
 #images div.image,
 #images div.block {
 	position: relative;
