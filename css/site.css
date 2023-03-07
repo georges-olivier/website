@@ -155,6 +155,14 @@ a {
 	color: #fff;
 	cursor: pointer;
 }
+#images div.image i.favorite.fa-solid {
+	background-color: #ffffff;
+	color: #183c8f;
+}
+#images div.image i.favorite.regular {
+	color: #fff;
+}
+
 #images div.image div.footer div.caption {
 	display: inline-block;
 	padding: 5px 8px;
