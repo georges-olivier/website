@@ -177,9 +177,6 @@ $(function() {
 			url: 'https://api.georgesolivier.art/set-favorite',
 			data: { imageId: imageId, action: action },
 			dataType: 'json'
-		})
-		.done(function( response ) {
-			console.log(response);
 		});
 
 	});
@@ -259,7 +256,7 @@ $(function() {
 	});
 
 	if ($(location).attr('hash')) {
-		// Open whatever
+		// Open whatever & add meta data
 	}
 
 	$(window).on('hashchange', function() {
