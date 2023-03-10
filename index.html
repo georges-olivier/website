@@ -38,73 +38,44 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 <script>
 
-let images = [
-	{
-		id: 1,
-		title: 'River tracks',
-		theme: 'London',
-		file: 'river-tracks',
-		class: 'colspan3'
-	},
-	{
-		id: 2,
-		title: 'London-2',
-		file: 'London-2',
-		class: 'colspan3'
-	},
-	{
-		id: 3,
-		title: 'Lloyds 4',
-		file: 'Lloyds-4',
-		class: 'colspan3'
-	},
-	{
-		title: 'Burning the midnight oil',
-		file: 'burning-the-midnight-oil',
-		class: 'colspan3'
-	},
+let selection = [
+	{id: 1, className: 'colspan3'},
+	{id: 3, className: 'colspan3'},
+	{id: 5, className: 'colspan3'},
+	{id: 6, className: 'colspan3'},
 
-	{
-		title: 'London 4',
-		file: 'London-4',
-		class: 'colspan4'
-	},
-	{
-		title: 'London City',
-		block: "The City has more Japanese banks than Tokyo and more American banks than Manhattan.",
-		class: 'colspan4 rowspan2'
-	},
-	{
-		title: 'Lloyds 7',
-		file: 'Lloyds-7',
-		class: 'colspan4'
-	},
+	{id: 2, className: 'colspan4'},
+	{id: 4, className: 'colspan4'},
+	{id: 8, className: 'colspan4'},
 
-	{
-		title: 'London 10',
-		file: 'London-10',
-		class: 'colspan4'
-	},
-	{
-		title: 'London 12',
-		file: 'London-12',
-		class: 'colspan4'
-	},
-	{
-		title: 'London 11',
-		file: 'London-11',
-		class: 'colspan4'
-	},
+	{id: 13, className: 'colspan4'},
+	{id: 14, className: 'colspan4'},
+	{id: 18, className: 'colspan4'},
 
-	{
-		title: 'Clocked in',
-		file: 'London-13',
-		class: 'colspan4'
-	},
+	{id: 7, className: 'colspan3'},
+	{id: 11, className: 'colspan3'},
+	{id: 12, className: 'colspan3'},
+	{id: 16, className: 'colspan3'},
 
-]
+];
 
 $(function() {
+
+	let collection = [];
+
+	$.ajax({
+		type: 'get',
+		url: 'https://api.georgesolivier.art/get-images',
+		data: {theme: 'london'},
+		dataType: 'json',
+		async:false,
+        success:function(images){
+            $.each(selection, function(i, select) {
+            	images[select.id].className = select.className;
+            	collection.push(images[select.id]);
+            });
+        }
+    });
 
 	let imgSeq = 1;
 	let favorites = localStorage.getItem('favorites');
@@ -125,13 +96,14 @@ $(function() {
 		return favorite;
 	}
 
-	$.each(images, function(i, image) {
+	$.each(collection, function(i, image) {
 		let div = $('<div>');
-		if (image.class) {
-			div.addClass(image.class);
+		console.log(image);
+		if (image.className) {
+			div.addClass(image.className);
 		}
-		if (image.file) {
-			let img = $('<img>', {src: 'img/'+image.file+'.webp', class: 'center-cropped', imgSeq: imgSeq, imgTitle: image.title, slug: image.file, imageId: image.id});
+		if (image.filename) {
+			let img = $('<img>', {src: 'img/'+image.theme.toLowerCase()+'/'+image.filename, class: 'center-cropped', imgSeq: imgSeq, imgTitle: image.title, slug: image.filename, imageId: image.id});
 			$('#images').append(div.addClass('image').append(img));
 			imgSeq++;
 		}
