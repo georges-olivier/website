@@ -32,6 +32,7 @@ function openModal(img) {
 
 
 function closeModal() {
+	$('head title').text('Georges Olivier');
 	$('#overlay').fadeOut('fast');
 	// Enable scrolling
 	$('body').removeClass('no-scroll');

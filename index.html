@@ -3,6 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>Georges Olivier</title>
+	<meta name="description" attr="description" content="Georges Olivier paints metropolitan #architecture in his distinctive style, combining elements of realism and expressionism in his vibrant, dynamic artworks." />
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 	<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
 	<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
@@ -11,7 +12,7 @@
 	<meta property="og:url" attr="url" content="" />
 	<meta property="og:image" attr="imageUrl" content="" />
 	<meta name="twitter:title" attr="title" content="Georges Olivier" />
-	<meta name="twitter:description" content="" />
+	<meta name="twitter:description" attr="description" content="" />
 	<meta name="twitter:image" attr="imageUrl" content="" />
 	<meta name="twitter:card" content="summary_large_image" />
 	<link rel="manifest" href="/site.webmanifest" />
@@ -245,13 +246,15 @@ $(function() {
 			let img = $('#images img[imageId='+image.id+']');
 			let url = window.location.protocol + '//' + window.location.host;
 
+			// Open whatever & add meta data
+
 			$('head meta[attr=title]').attr('content', image.title);
-			$('head meta[attr=url]').attr('content', url + window.location.hash);
-			$('head meta[attr=imageUrl]').attr('content', url + '/img/' + image.theme + '/' + image.filename);
+			$('head title').text(image.title);
+			$('head meta[attr=description]').attr('content', "Artwork from Georges Olivier's collection : " + image.theme);
+			$('head meta[attr=url]').attr('content', url + '/' + window.location.hash);
+			$('head meta[attr=imageUrl]').attr('content', url + '/img/' + image.theme.toLowerCase() + '/' + image.filename);
 
 			openModal(img);
-
-			// Open whatever & add meta data
 
 		}
 
