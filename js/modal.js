@@ -29,6 +29,8 @@ function openModal(img) {
 	overlay.append(modal);
 }
 
+
+
 function closeModal() {
 	$('#overlay').fadeOut('fast');
 	// Enable scrolling
