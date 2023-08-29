@@ -67,6 +67,8 @@ let selection = [
 	{id: 12, className: 'colspan3'},
 	{id: 16, className: 'colspan3'},
 
+	{id: 17, className: 'colspan6'},
+	{id: 19, className: 'colspan6'},
 ];
 
 $(function() {
@@ -244,12 +246,12 @@ $(function() {
 			let filename = $(location).attr('hash').split('/').reverse()[0];
 			let image = collection.find(o => o.filename === filename);
 			let img = $('#images img[imageId='+image.id+']');
-			let url = window.location.protocol + '//' + window.location.host;
 
 			// Open whatever & add meta data
 
-			$('head meta[attr=title]').attr('content', image.title);
 			$('head title').text(image.title);
+
+			$('head meta[attr=title]').attr('content', image.title);
 			$('head meta[attr=description]').attr('content', "Artwork from Georges Olivier's collection : " + image.theme);
 			$('head meta[attr=url]').attr('content', url + '/' + window.location.hash);
 			$('head meta[attr=imageUrl]').attr('content', url + '/img/' + image.theme.toLowerCase() + '/' + image.filename);

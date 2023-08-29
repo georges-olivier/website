@@ -29,8 +29,6 @@ function openModal(img) {
 	overlay.append(modal);
 }
 
-
-
 function closeModal() {
 	$('head title').text('Georges Olivier');
 	window.location.hash = '';
