@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
 	<title>Georges Olivier</title>
 	<meta name="description" attr="description" content="Georges Olivier paints metropolitan #architecture in his distinctive style, combining elements of realism and expressionism in his vibrant, dynamic artworks." />
+	<link rel="canonical" href="https://georgesolivier.art" />
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 	<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
 	<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
@@ -255,6 +256,8 @@ $(function() {
 
 			// Open whatever & add meta data
 			$('head title').text(image.title);
+			$('link[rel=canonical]').attr('href', 'https://showcase.georgesolivier.art/image/'+image.filename.replace('.webp',''));
+			$('meta[name=description]').attr('content', image.title+' — from Georges Olivier\'s '+image.theme+' collection.');
 			openModal(img);
 		}
 	});
