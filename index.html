@@ -7,14 +7,6 @@
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 	<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
 	<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
-	<meta property="og:title" attr="title" content="Georges Olivier" />
-	<meta property="og:type" content="" />
-	<meta property="og:url" attr="url" content="" />
-	<meta property="og:image" attr="imageUrl" content="" />
-	<meta name="twitter:title" attr="title" content="Georges Olivier" />
-	<meta name="twitter:description" attr="description" content="" />
-	<meta name="twitter:image" attr="imageUrl" content="" />
-	<meta name="twitter:card" content="summary_large_image" />
 	<link rel="manifest" href="/site.webmanifest" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -114,7 +106,7 @@ $(function() {
 			div.addClass(image.className);
 		}
 		if (image.filename) {
-			let img = $('<img>', {src: 'img/'+image.theme.toLowerCase()+'/'+image.filename, class: 'center-cropped', imgSeq: imgSeq, imgTitle: image.title, slug: image.filename, imageId: image.id});
+			let img = $('<img>', {src: 'img/'+image.theme.toLowerCase()+'/'+image.filename, class: 'center-cropped', imgSeq: imgSeq, imgTitle: image.title, slug: image.filename.replace('.webp',''), imageId: image.id});
 			$('#images').append(div.addClass('image').append(img));
 			imgSeq++;
 
@@ -132,8 +124,6 @@ $(function() {
 			$('#images').append(div.addClass('block').append(block));
 		}
 	});
-
-	console.log(collection);
 
 	$('#images').on('click', 'i.favorite', function(e) {
 		e.preventDefault();
@@ -244,22 +234,13 @@ $(function() {
 
 		if ($(location).attr('hash')) {
 			let filename = $(location).attr('hash').split('/').reverse()[0];
-			let image = collection.find(o => o.filename === filename);
+			let image = collection.find(o => o.filename === filename + '.webp');
 			let img = $('#images img[imageId='+image.id+']');
 
 			// Open whatever & add meta data
-
 			$('head title').text(image.title);
-
-			$('head meta[attr=title]').attr('content', image.title);
-			$('head meta[attr=description]').attr('content', "Artwork from Georges Olivier's collection : " + image.theme);
-			$('head meta[attr=url]').attr('content', url + '/' + window.location.hash);
-			$('head meta[attr=imageUrl]').attr('content', url + '/img/' + image.theme.toLowerCase() + '/' + image.filename);
-
 			openModal(img);
-
 		}
-
 	});
 
 });
