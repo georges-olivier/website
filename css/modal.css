@@ -4,7 +4,7 @@
 	left: 0;
 	width: 100vw;
 	height: 100vh;
-	background-color: #00000099;
+	background-color: #000000cc;
 	z-index: 999999;
 	display: none;
 	justify-content: center;
@@ -25,18 +25,29 @@
   overflow: hidden;
 }
 
+#overlay div.modal div.divide {
+	display: inline-block;
+	float: left;
+	border-bottom: 1px dotted #ffffff99;
+	width: 2rem;
+	margin: 0.75rem 0 0.25rem;
+}
 #overlay div.modal a.button {
 	display: inline-block;
 	float: left;
 	background-color: #ffffffcc;
 	color: #000;
-	padding: 0.4rem;
+	padding: 0.4rem 0;
 	width: 2rem;
 	height: 2rem;
 	border-radius: 2.0rem;
 	cursor: pointer;
 	margin-top: 0.5rem;
 	text-align: center;
+}
+#overlay div.modal a.button.green {
+	background-color: #d4ffc7cc;
+	color: #1e7402;
 }
 #overlay div.modal a.button:hover {
 	background-color: #fff;
@@ -45,3 +56,4 @@
 	font-size: 1.2rem;
 	line-height: 1.2rem;
 }
+

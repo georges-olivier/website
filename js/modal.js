@@ -23,12 +23,32 @@ function openModal(img) {
 	$('#images img[current=true]').removeAttr('current');
 	img.attr('current', true);
 
+	// Interaction buttons
+	let favorite = $('<a>', {class: 'button'}).append(
+		$('<i>', {class: 'fa-regular fa-heart'})
+	)
+
+	let buy = $('<a>', {class: 'button green'}).append(
+		$('<i>', {class: 'fa-solid fa-basket-shopping'})
+	)
+
+	let notify = $('<a>', {class: 'button'}).append(
+		$('<i>', {class: 'fa-regular fa-bell'})
+	)
+
+	let interactionButtons = $('<div>').append(
+		favorite,
+		//buy,
+		//notify
+	);
+	interactionButtons.css({position: 'absolute', top: 5, left: modalWidth + 15});
+
+	// Social buttons
 	let newline = "\n\n";
 	let url = 'https://showcase.georgesolivier.art/image/'+img.attr('slug');
 	let description = img.attr('imgtitle')+' — from Georges Olivier\'s '+img.attr('imgTheme')+' collection.';
 	let hashtags = '#'+img.attr('imgTheme')+' #art #artworks #artgallery';
 
-	// Share options
 	let shareTwitter = $('<a>', {class: 'button'}).append(
 		$('<i>', {class: 'fa-brands fa-x-twitter'})
 	).on('click', function(e) {
@@ -64,12 +84,23 @@ function openModal(img) {
 		return false;
 	});
 
-	let social = $('<div>').append(
+	let link = $('<a>', {class: 'button'}).append(
+		$('<i>', {class: 'fa-solid fa-link'})
+	)
+
+	let copy = $('<a>', {class: 'button'}).append(
+		$('<i>', {class: 'fa-regular fa-image'})
+	)
+
+	let socialButtons = $('<div>').append(
 		shareTwitter,
 		sharePinterest,
-		shareFacebook
+		shareFacebook,
+		$('<div>', {class: 'divide'}),
+		copy,
+		link
 	);
-	social.css({position: 'absolute', bottom: 0, left: modalWidth + 15});
+	socialButtons.css({position: 'absolute', bottom: 5, left: modalWidth + 15});
 
 	// Append modal
 	modal = $('<div>', {class: 'modal'});
@@ -79,7 +110,8 @@ function openModal(img) {
 			src: img.attr('src'),
 			imgSeq: img.attr('imgSeq')}).css({width: modalWidth + 'px', height: modalHeight + 'px', padding: '3rem'
 		}),
-		social
+		interactionButtons,
+		socialButtons
 	);
 	overlay.append(modal);
 }
