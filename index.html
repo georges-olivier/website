@@ -13,7 +13,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 	<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;400;700&display=swap" rel="stylesheet" />
 	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet" />
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" rel="stylesheet" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" />
 	<link href="css/site.css" rel="stylesheet" />
 	<link href="css/modal.css" rel="stylesheet" />
 	<script type='text/javascript'>
@@ -32,7 +32,7 @@
 		<h1>Georges Olivier</h1>
 	</div>
 	<div class="float-right">
-		<a href="https://twitter.com/ArtistOlivier" class="social" title="Twitter @ArtistOlivier" target="_social"><i class="fa-brands fa-twitter"></i></a>
+		<a href="https://twitter.com/ArtistOlivier" class="social" title="Twitter @ArtistOlivier" target="_social"><i class="fa-brands fa-x-twitter"></i></a>
 		<a href="https://www.instagram.com/ArtistGeorgesOlivier" class="social" title="Instagram @artistgeorgesolivier" target="_social"><i class="fa-brands fa-instagram"></i></a>
 		<a href="https://www.pinterest.fr/artistolivier/georges-olivier/" class="social" title="Pinterest @artistolivier" target="_social"><i class="fa-brands fa-pinterest"></i></a>
 	</div>
@@ -114,7 +114,15 @@ $(function() {
 			div.addClass(image.className);
 		}
 		if (image.filename) {
-			let img = $('<img>', {src: 'img/'+image.theme.toLowerCase()+'/'+image.filename, class: 'center-cropped', imgSeq: imgSeq, imgTitle: image.title, slug: image.filename.replace('.webp',''), imageId: image.id});
+			let img = $('<img>', {
+				src: 'img/'+image.theme.toLowerCase()+'/'+image.filename,
+				class: 'center-cropped',
+				imgSeq: imgSeq,
+				imgTitle: image.title,
+				imgTheme: image.theme,
+				slug: image.filename.replace('.webp',''),
+				imageId: image.id
+			});
 			$('#images').append(div.addClass('image').append(img));
 			imgSeq++;
 
@@ -253,8 +261,6 @@ $(function() {
 
 });
 </script>
-<script src="https://cdn.ingest-lr.com/LogRocket.min.js" crossorigin="anonymous"></script>
-<script>window.LogRocket && window.LogRocket.init('rdxejp/georges-olivier');</script>
 
 <!--
 	https://thenounproject.com/icon/new-york-36684/

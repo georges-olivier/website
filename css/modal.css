@@ -9,9 +9,13 @@
 	display: none;
 	justify-content: center;
 }
+#overlay div, #overlay a {
+	box-sizing: border-box;
+}
 
 #overlay div.modal {
 	display: flex;
+	position: relative;
 	background-color: #fff;
 	align-self: center;
 }
@@ -19,4 +23,25 @@
 .no-scroll {
   height: 100%;
   overflow: hidden;
+}
+
+#overlay div.modal a.button {
+	display: inline-block;
+	float: left;
+	background-color: #ffffff99;
+	color: #000;
+	padding: 0.4rem;
+	width: 2rem;
+	height: 2rem;
+	border-radius: 2.0rem;
+	cursor: pointer;
+	margin-top: 0.5rem;
+	text-align: center;
+}
+#overlay div.modal a.button:hover {
+	background-color: #fff;
+}
+#overlay div.modal a.button i {
+	font-size: 1.2rem;
+	line-height: 1.2rem;
 }
