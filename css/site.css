@@ -1,5 +1,5 @@
 body {
-	background-color: #1c4eb3;
+	background-color: #112b62;
 	padding: 0;
 	margin: 0;
 	font-family: 'Raleway', sans-serif;
@@ -187,6 +187,20 @@ a {
 	padding-top: 150px;
     background-color: rgb(2, 132, 199);
     background-image: radial-gradient(at 90% 83%, rgb(228, 228, 231) 0, transparent 83%), radial-gradient(at 12% 11%, rgb(30, 64, 175) 0, transparent 48%), radial-gradient(at 35% 91%, rgb(253, 186, 116) 0, transparent 47%);
+}
+
+#footer {
+	margin: auto;
+	max-width: 1200px;
+	font-weight: 100;
+	color: #fff;
+	padding: 100px 40px 110px;
+}
+#footer a {
+	color: #fff;
+}
+#footer a:hover {
+	text-decoration: underline;
 }
 
 @media only screen and (max-width: 1260px) {
