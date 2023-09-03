@@ -54,57 +54,18 @@
 <script src="js/modal.js"></script>
 <script>
 
-let selection = [
-	{id: 1, className: 'colspan3'},
-	{id: 3, className: 'colspan3'},
-	{id: 5, className: 'colspan3'},
-	{id: 6, className: 'colspan3'},
-
-	{id: 2, className: 'colspan4'},
-	{id: 4, className: 'colspan4'},
-	{id: 8, className: 'colspan4'},
-
-	{id: 17, className: 'colspan6'},
-	{id: 19, className: 'colspan6'},
-
-	{id: 13, className: 'colspan4'},
-	{id: 14, className: 'colspan4'},
-	{id: 18, className: 'colspan4'},
-
-	{id: 7, className: 'colspan3'},
-	{id: 11, className: 'colspan3'},
-	{id: 12, className: 'colspan3'},
-	{id: 16, className: 'colspan3'},
-
-	{id: 29, className: 'colspan6'},
-	{id: 31, className: 'colspan6'},
-
-	{id: 32, className: 'colspan3'},
-	{id: 33, className: 'colspan3'},
-	{id: 34, className: 'colspan3'},
-	{id: 37, className: 'colspan3'},
-
-	{id: 28, className: 'colspan4'},
-	{id: 30, className: 'colspan4'},
-	{id: 38, className: 'colspan4'},
-
-];
-
 $(function() {
 
 	let collection = [];
+	let selection = [];
 
 	$.ajax({
 		type: 'get',
-		url: 'https://api.georgesolivier.art/get-images',
-		data: {theme: 'london'},
+		url: 'https://api.georgesolivier.art/selection/london.json',
 		dataType: 'json',
-		async:false,
-        success:function(images){
-            $.each(selection, function(i, select) {
-            	images[select.id].className = select.className;
-            	collection.push(images[select.id]);
-            });
+		async: false,
+        success:function(json){
+            selection = json;
         }
     });
 
@@ -127,38 +88,55 @@ $(function() {
 		return favorite;
 	}
 
-	$.each(collection, function(i, image) {
-		let div = $('<div>');
-		if (image.className) {
-			div.addClass(image.className);
-		}
-		if (image.filename) {
-			let img = $('<img>', {
-				src: 'img/'+image.theme.toLowerCase()+'/'+image.filename,
-				class: 'center-cropped',
-				imgSeq: imgSeq,
-				imgTitle: image.title,
-				imgTheme: image.theme,
-				slug: image.filename.replace('.webp',''),
-				imageId: image.id
+	$.ajax({
+		type: 'get',
+		url: 'https://api.georgesolivier.art/get-images',
+		data: {theme: 'london'},
+		dataType: 'json',
+		async: false,
+        success:function(images){
+            $.each(selection, function(i, select) {
+            	images[select.id].className = select.className;
+            	collection.push(images[select.id]);
+            });
+
+			$.each(collection, function(i, image) {
+				let div = $('<div>');
+				if (image.className) {
+					div.addClass(image.className);
+				}
+				if (image.filename) {
+					let img = $('<img>', {
+						src: 'img/'+image.theme.toLowerCase()+'/'+image.filename,
+						class: 'center-cropped',
+						imgSeq: imgSeq,
+						imgTitle: image.title,
+						imgTheme: image.theme,
+						slug: image.filename.replace('.webp',''),
+						imageId: image.id
+					});
+					$('#images').append(div.addClass('image').append(img));
+					imgSeq++;
+
+					img.on('click', function() {
+						openModal($(this));
+					});
+				}
+
+				if (image['id'] && favorites.includes(image['id'].toString())) {
+					div.append(favoriteIcon(image['id'].toString()));
+				}
+
+				if (image.block) {
+					let block = $('<div>').text(image.block);
+					$('#images').append(div.addClass('block').append(block));
+				}
 			});
-			$('#images').append(div.addClass('image').append(img));
-			imgSeq++;
 
-			img.on('click', function() {
-				openModal($(this));
-			});
-		}
+        }
+    });
 
-		if (image['id'] && favorites.includes(image['id'].toString())) {
-			div.append(favoriteIcon(image['id'].toString()));
-		}
 
-		if (image.block) {
-			let block = $('<div>').text(image.block);
-			$('#images').append(div.addClass('block').append(block));
-		}
-	});
 
 	$('#images').on('click', 'i.favorite', function(e) {
 		e.preventDefault();
