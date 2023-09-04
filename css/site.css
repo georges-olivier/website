@@ -184,7 +184,7 @@ a {
 }
 
 .mesh {
-	padding-top: 100px;
+	padding-top: 7rem;
     background-color: rgb(2, 132, 199);
     background-image: radial-gradient(at 90% 83%, rgb(228, 228, 231) 0, transparent 83%), radial-gradient(at 12% 11%, rgb(30, 64, 175) 0, transparent 48%), radial-gradient(at 35% 91%, rgb(253, 186, 116) 0, transparent 47%);
 }
@@ -192,6 +192,7 @@ a {
 	font-size: 12rem;
 	color: #fff;
 	text-align: center;
+	padding-bottom: 2rem;
 }
 
 #footer {
